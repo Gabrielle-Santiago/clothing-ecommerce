@@ -5,4 +5,13 @@
     <option name="newEntityIdStrategy" value="UUID" />
     <option name="renamerInitialized" value="true" />
   </component>
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit moduleName="ecommerce.main" name="Default">
+        <packages>
+          <package value="com.gabrielle.ecommerce" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
 </project>
