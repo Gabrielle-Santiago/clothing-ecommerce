@@ -1,6 +1,6 @@
 package com.gabrielle.ecommerce.application.service;
 
-import com.gabrielle.ecommerce.domain.entity.UserEntity;
+import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

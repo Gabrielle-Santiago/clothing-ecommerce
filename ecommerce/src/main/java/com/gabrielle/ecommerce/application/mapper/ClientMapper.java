@@ -1,7 +1,7 @@
 package com.gabrielle.ecommerce.application.mapper;
 
-import com.gabrielle.ecommerce.application.dto.RegisterClientDTO;
-import com.gabrielle.ecommerce.domain.entity.ClientEntity;
+import com.gabrielle.ecommerce.application.dto.user.RegisterClientDTO;
+import com.gabrielle.ecommerce.domain.entity.user.ClientEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

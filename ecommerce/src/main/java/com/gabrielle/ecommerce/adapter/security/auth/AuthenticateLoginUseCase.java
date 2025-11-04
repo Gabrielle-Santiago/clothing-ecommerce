@@ -5,7 +5,7 @@ import com.gabrielle.ecommerce.adapter.security.token.port.TokenProviderPort;
 import com.gabrielle.ecommerce.adapter.security.token.refresh.TokenRefreshEntity;
 import com.gabrielle.ecommerce.adapter.security.token.refresh.dto.TokenRefreshResponse;
 import com.gabrielle.ecommerce.adapter.security.token.refresh.repository.TokenRefreshRepository;
-import com.gabrielle.ecommerce.application.dto.LoginDTO;
+import com.gabrielle.ecommerce.application.dto.user.LoginDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

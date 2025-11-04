@@ -1,6 +1,6 @@
 package com.gabrielle.ecommerce.application.service.impl;
 
-import com.gabrielle.ecommerce.domain.entity.UserEntity;
+import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
 import com.gabrielle.ecommerce.ports.repository.UserRepository;
 import com.gabrielle.ecommerce.application.service.UserDetailsImpl;
 import org.springframework.security.core.userdetails.UserDetails;

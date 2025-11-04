@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.application.dto;
+package com.gabrielle.ecommerce.application.dto.user;
 
 import com.gabrielle.ecommerce.domain.enums.UserRole;
 

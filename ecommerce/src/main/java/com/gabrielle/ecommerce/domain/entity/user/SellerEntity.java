@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.domain.entity;
+package com.gabrielle.ecommerce.domain.entity.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
@@ -8,9 +8,9 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "clients")
+@Table(name = "sellers")
 @PrimaryKeyJoinColumn(name = "user_id")
-public class ClientEntity extends UserEntity{
-    private String cpf;
-    private String adress;
+public class SellerEntity extends UserEntity{
+    private String cnpj;
+    private String storeName;
 }

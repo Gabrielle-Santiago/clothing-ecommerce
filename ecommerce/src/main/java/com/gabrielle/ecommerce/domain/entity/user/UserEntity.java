@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.domain.entity;
+package com.gabrielle.ecommerce.domain.entity.user;
 
 import com.gabrielle.ecommerce.domain.enums.UserRole;
 import jakarta.persistence.*;
