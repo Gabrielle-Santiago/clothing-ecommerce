@@ -1,9 +1,11 @@
 package com.gabrielle.ecommerce.adapter.security;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import com.gabrielle.ecommerce.adapter.security.token.jwt.JwtTokenAdapter;
 
+import com.gabrielle.ecommerce.application.service.impl.UserDetailsServiceImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,10 +24,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtTokenAdapter tokenAdapter;
     private final UserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
 
-    public JwtAuthenticationFilter(JwtTokenAdapter tokenAdapter, UserDetailsService userDetailsService) {
+    public JwtAuthenticationFilter(JwtTokenAdapter tokenAdapter, UserDetailsService userDetailsService, UserDetailsServiceImpl userDetailsServiceImpl) {
         this.tokenAdapter = tokenAdapter;
         this.userDetailsService = userDetailsService;
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
     }
 
     @Override
@@ -34,7 +38,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try{
             if(token != null){
                 String subject = tokenAdapter.validateToken(token);
-                UserDetails userDetails = userDetailsService.loadUserByUsername(subject);
+                //UserDetails userDetails = userDetailsService.loadUserByUsername(subject);
+                UUID userId = UUID.fromString(subject);
+                UserDetails userDetails = userDetailsServiceImpl.loadUserById(userId);
 
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()

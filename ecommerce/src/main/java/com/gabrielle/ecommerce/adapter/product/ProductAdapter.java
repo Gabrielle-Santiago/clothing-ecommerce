@@ -3,8 +3,7 @@ package com.gabrielle.ecommerce.adapter.product;
 import com.gabrielle.ecommerce.application.mapper.product.ProductPersistenceMapper;
 import com.gabrielle.ecommerce.domain.Product;
 import com.gabrielle.ecommerce.domain.entity.ProductEntity;
-import com.gabrielle.ecommerce.ports.repository.ProductJpaRepository;
-import com.gabrielle.ecommerce.ports.repository.ProductRepository;
+import com.gabrielle.ecommerce.ports.repository.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -12,8 +11,8 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ProductAdapter implements ProductRepository {
-    public final ProductJpaRepository repository;
-    public final ProductPersistenceMapper mapper;
+    private final ProductJpaRepository repository;
+    private final ProductPersistenceMapper mapper;
 
     public ProductAdapter(ProductJpaRepository repository, ProductPersistenceMapper mapper) {
         this.repository = repository;
@@ -22,8 +21,9 @@ public class ProductAdapter implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        ProductEntity entityToSave = mapper.toEntity(product);
-        ProductEntity savedEntity = repository.save(entityToSave);
+        ProductEntity entityToSaveProduct = mapper.toEntity(product);
+        ProductEntity savedEntity = repository.save(entityToSaveProduct);
+
         return mapper.toDomain(savedEntity);
     }
 

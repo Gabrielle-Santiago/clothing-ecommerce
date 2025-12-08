@@ -2,29 +2,44 @@ package com.gabrielle.ecommerce.application.service.product;
 
 import com.gabrielle.ecommerce.application.dto.product.ProductRequestDTO;
 import com.gabrielle.ecommerce.application.dto.product.ProductResponseDTO;
-import com.gabrielle.ecommerce.application.mapper.product.ProductRequestMapper;
-import com.gabrielle.ecommerce.application.mapper.product.ProductResponseMapper;
+import com.gabrielle.ecommerce.application.mapper.product.*;
 import com.gabrielle.ecommerce.domain.Product;
-import com.gabrielle.ecommerce.ports.repository.ProductRepository;
+import com.gabrielle.ecommerce.domain.Seller;
+import com.gabrielle.ecommerce.ports.SellerLookupPort;
+import com.gabrielle.ecommerce.ports.repository.*;
+import com.gabrielle.ecommerce.shared.exception.NotFoundSeller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 public class CreateProductUseCase {
-    public final ProductRepository repository;
-    public final ProductRequestMapper request;
-    public final ProductResponseMapper response;
+    public final ProductRepository productRepository;
+    public final SellerRepository sellerRepository;
+    public final ProductRequestMapper requestMapper;
+    public final ProductResponseMapper responseMapper;
+    public final SellerLookupPort sellerLookupPort;
 
-    public CreateProductUseCase(ProductRepository repository, ProductRequestMapper request, ProductResponseMapper response) {
-        this.repository = repository;
-        this.request = request;
-        this.response = response;
+    public CreateProductUseCase(ProductRepository productRepository, SellerRepository sellerRepository,
+                                ProductRequestMapper requestMapper, ProductResponseMapper responseMapper, SellerLookupPort sellerLookupPort
+    ) {
+        this.productRepository = productRepository;
+        this.sellerRepository = sellerRepository;
+        this.requestMapper = requestMapper;
+        this.responseMapper = responseMapper;
+        this.sellerLookupPort = sellerLookupPort;
     }
 
     @Transactional
     public ProductResponseDTO execute(ProductRequestDTO requestDTO) {
-        Product productToCreate = request.toDomain(requestDTO);
-        Product savedProduct = repository.save(productToCreate);
-        return response.toDTO(savedProduct);
+        UUID  sellerId = sellerLookupPort.getCurrentSellerId();
+        Seller seller = sellerRepository.findById(sellerId)
+                .orElseThrow(() -> new NotFoundSeller("Seller not found"));
+
+        Product product = requestMapper.toDomain(requestDTO, seller);
+        Product savedProduct = productRepository.save(product);
+
+        return responseMapper.toDTO(savedProduct);
     }
 }

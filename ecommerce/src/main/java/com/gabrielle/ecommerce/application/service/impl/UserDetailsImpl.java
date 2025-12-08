@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.application.service;
+package com.gabrielle.ecommerce.application.service.impl;
 
 import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +23,10 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
        return List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().getRole()));
+    }
+
+    public UserEntity getUser() {
+        return this.user;
     }
 
     @Override

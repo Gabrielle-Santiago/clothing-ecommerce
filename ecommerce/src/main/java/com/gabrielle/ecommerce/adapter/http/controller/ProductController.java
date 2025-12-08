@@ -2,17 +2,13 @@ package com.gabrielle.ecommerce.adapter.http.controller;
 
 import com.gabrielle.ecommerce.application.dto.product.ProductRequestDTO;
 import com.gabrielle.ecommerce.application.dto.product.ProductResponseDTO;
-import com.gabrielle.ecommerce.application.service.product.CreateProductUseCase;
-import com.gabrielle.ecommerce.application.service.product.DeleteProductUseCase;
-import com.gabrielle.ecommerce.application.service.product.FindAllProductsUseCase;
-import com.gabrielle.ecommerce.application.service.product.FindByProductIdUseCase;
+import com.gabrielle.ecommerce.application.service.product.*;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController

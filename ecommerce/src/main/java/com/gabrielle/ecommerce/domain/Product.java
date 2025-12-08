@@ -15,13 +15,14 @@ public class Product {
     private BigDecimal price;
     private String describe;
     private String img;
+    private UUID sellerId;
 
-    public Product(String nameProduct, String size, int quant, BigDecimal price, String describe, String img) {
-        this(UUID.randomUUID(), nameProduct, size, quant, price, describe, img);
+    public Product(String nameProduct, String size, int quant, BigDecimal price, String describe, String img, UUID sellerId) {
+        this(UUID.randomUUID(), nameProduct, size, quant, price, describe, img, sellerId);
     }
 
     @Default
-    public Product(UUID id, String nameProduct, String size, int quant, BigDecimal price, String describe, String img) {
+    public Product(UUID id, String nameProduct, String size, int quant, BigDecimal price, String describe, String img, UUID sellerId) {
         validate(nameProduct, size, quant, price);
 
         this.id = id;
@@ -31,6 +32,7 @@ public class Product {
         this.price = price;
         this.describe = describe;
         this.img = img;
+        this.sellerId = sellerId;
     }
 
     private void validate(String nameProduct, String size, int quant, BigDecimal price) {

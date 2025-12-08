@@ -1,9 +1,7 @@
 package com.gabrielle.ecommerce.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -25,13 +23,16 @@ public class ProductEntity {
     private BigDecimal price;
     private String describe;
     private String img;
+    @Column(name = "seller_id")
+    private UUID seller;
 
-    public ProductEntity(String nameProduct, String size, int quant, BigDecimal price, String describe, String img) {
+    public ProductEntity(String nameProduct, String size, int quant, BigDecimal price, String describe, String img, UUID seller) {
         this.nameProduct = nameProduct;
         this.size = size;
         this.quant = quant;
         this.price = price;
         this.describe = describe;
         this.img = img;
+        this.seller = seller;
     }
 }
