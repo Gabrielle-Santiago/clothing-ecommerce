@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.application.mapper;
+package com.gabrielle.ecommerce.application.mapper.user;
 
 import com.gabrielle.ecommerce.domain.Seller;
 import com.gabrielle.ecommerce.domain.entity.user.SellerEntity;

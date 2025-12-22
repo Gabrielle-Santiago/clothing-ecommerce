@@ -6,8 +6,9 @@ import com.gabrielle.ecommerce.application.mapper.product.*;
 import com.gabrielle.ecommerce.domain.Product;
 import com.gabrielle.ecommerce.domain.Seller;
 import com.gabrielle.ecommerce.ports.SellerLookupPort;
-import com.gabrielle.ecommerce.ports.repository.*;
-import com.gabrielle.ecommerce.shared.exception.NotFoundSeller;
+import com.gabrielle.ecommerce.ports.repository.product.ProductRepository;
+import com.gabrielle.ecommerce.ports.repository.user.SellerRepository;
+import com.gabrielle.ecommerce.shared.exception.NotFoundUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +36,7 @@ public class CreateProductUseCase {
     public ProductResponseDTO execute(ProductRequestDTO requestDTO) {
         UUID  sellerId = sellerLookupPort.getCurrentSellerId();
         Seller seller = sellerRepository.findById(sellerId)
-                .orElseThrow(() -> new NotFoundSeller("Seller not found"));
+                .orElseThrow(() -> new NotFoundUser("Seller not found"));
 
         Product product = requestMapper.toDomain(requestDTO, seller);
         Product savedProduct = productRepository.save(product);

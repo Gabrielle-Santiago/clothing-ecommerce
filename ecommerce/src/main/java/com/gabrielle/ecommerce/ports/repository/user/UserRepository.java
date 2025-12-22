@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.ports.repository;
+package com.gabrielle.ecommerce.ports.repository.user;
 
 import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

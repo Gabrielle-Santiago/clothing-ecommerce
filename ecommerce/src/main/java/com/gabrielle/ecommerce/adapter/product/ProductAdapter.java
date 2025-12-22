@@ -3,7 +3,8 @@ package com.gabrielle.ecommerce.adapter.product;
 import com.gabrielle.ecommerce.application.mapper.product.ProductPersistenceMapper;
 import com.gabrielle.ecommerce.domain.Product;
 import com.gabrielle.ecommerce.domain.entity.ProductEntity;
-import com.gabrielle.ecommerce.ports.repository.*;
+import com.gabrielle.ecommerce.ports.repository.product.ProductJpaRepository;
+import com.gabrielle.ecommerce.ports.repository.product.ProductRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

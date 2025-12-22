@@ -3,7 +3,7 @@ package com.gabrielle.ecommerce.application.service.product;
 import com.gabrielle.ecommerce.application.dto.product.ProductResponseDTO;
 import com.gabrielle.ecommerce.application.mapper.product.ProductResponseMapper;
 import com.gabrielle.ecommerce.domain.Product;
-import com.gabrielle.ecommerce.ports.repository.ProductRepository;
+import com.gabrielle.ecommerce.ports.repository.product.ProductRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;

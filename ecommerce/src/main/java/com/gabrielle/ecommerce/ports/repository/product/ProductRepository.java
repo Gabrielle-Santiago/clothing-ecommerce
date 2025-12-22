@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.ports.repository;
+package com.gabrielle.ecommerce.ports.repository.product;
 
 import com.gabrielle.ecommerce.domain.Product;
 

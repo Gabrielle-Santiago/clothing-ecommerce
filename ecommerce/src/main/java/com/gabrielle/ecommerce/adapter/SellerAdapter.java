@@ -1,9 +1,9 @@
 package com.gabrielle.ecommerce.adapter;
 
-import com.gabrielle.ecommerce.application.mapper.SellerPersistenceMapper;
+import com.gabrielle.ecommerce.application.mapper.user.SellerPersistenceMapper;
 import com.gabrielle.ecommerce.domain.Seller;
-import com.gabrielle.ecommerce.ports.repository.SellerJpaRepository;
-import com.gabrielle.ecommerce.ports.repository.SellerRepository;
+import com.gabrielle.ecommerce.ports.repository.user.SellerJpaRepository;
+import com.gabrielle.ecommerce.ports.repository.user.SellerRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.gabrielle.ecommerce.application.mapper;
+package com.gabrielle.ecommerce.application.mapper.user;
 
 import com.gabrielle.ecommerce.application.dto.user.RegisterClientDTO;
 import com.gabrielle.ecommerce.domain.entity.user.ClientEntity;

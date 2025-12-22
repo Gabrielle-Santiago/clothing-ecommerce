@@ -1,6 +1,6 @@
 package com.gabrielle.ecommerce.application.service.product;
 
-import com.gabrielle.ecommerce.ports.repository.ProductRepository;
+import com.gabrielle.ecommerce.ports.repository.product.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

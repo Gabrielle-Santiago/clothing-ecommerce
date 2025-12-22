@@ -1,6 +1,8 @@
 package com.gabrielle.ecommerce.domain;
 
 import com.gabrielle.ecommerce.domain.annotation.Default;
+import com.gabrielle.ecommerce.shared.exception.PriceGreaterThanZeroException;
+import com.gabrielle.ecommerce.shared.exception.QuantityGreaterThanZeroException;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -43,10 +45,10 @@ public class Product {
             throw new IllegalArgumentException("Size cannot be blank.");
         }
         if (quant < 0) {
-            throw new IllegalArgumentException("Quantity cannot be negative.");
+            throw new QuantityGreaterThanZeroException("Quantity cannot be negative.");
         }
         if (price == null || price.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Price must be greater than zero.");
+            throw new PriceGreaterThanZeroException("Price must be greater than zero.");
         }
     }
 

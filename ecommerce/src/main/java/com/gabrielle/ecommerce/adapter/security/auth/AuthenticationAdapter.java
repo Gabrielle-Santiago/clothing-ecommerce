@@ -2,7 +2,7 @@ package com.gabrielle.ecommerce.adapter.security.auth;
 
 import com.gabrielle.ecommerce.adapter.security.token.port.LoginProviderPort;
 import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
-import com.gabrielle.ecommerce.ports.repository.UserRepository;
+import com.gabrielle.ecommerce.ports.repository.user.UserRepository;
 import com.gabrielle.ecommerce.shared.exception.authentication.InvalidCredentialsException;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;

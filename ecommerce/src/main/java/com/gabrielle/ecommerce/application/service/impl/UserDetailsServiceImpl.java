@@ -1,7 +1,7 @@
 package com.gabrielle.ecommerce.application.service.impl;
 
 import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
-import com.gabrielle.ecommerce.ports.repository.UserRepository;
+import com.gabrielle.ecommerce.ports.repository.user.UserRepository;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
