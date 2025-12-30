@@ -27,6 +27,7 @@ public class CreatePurchaseUseCase {
     }
 
     public PurchaseResponse execute(PurchaseRequest request) {
+
         UUID clientId = clientLookupPort.getCurrentClientId();
 
         Purchase purchase = Purchase.createWithClient(clientId, request.paymentMethod());
@@ -34,6 +35,7 @@ public class CreatePurchaseUseCase {
         request.items().forEach(item ->
                 purchase.addItem(new PurchaseItem(item.productId(), item.quantity(), item.unitPrice()))
         );
+        purchase.finalizePurchase();
 
         return responseMapper.toDTO(repository.save(purchase));
     }

@@ -2,9 +2,7 @@ package com.gabrielle.ecommerce.adapter.http.controller;
 
 import com.gabrielle.ecommerce.application.dto.purchase.PurchaseRequest;
 import com.gabrielle.ecommerce.application.dto.purchase.PurchaseResponse;
-import com.gabrielle.ecommerce.application.mapper.purchase.PurchaseResponseMapper;
 import com.gabrielle.ecommerce.application.service.purchase.*;
-import com.gabrielle.ecommerce.domain.Purchase;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +16,12 @@ import java.util.UUID;
 public class PurchaseController {
 
     private final CreatePurchaseUseCase createPurchase;
-    private final PurchaseResponseMapper responseMapper;
     private final DeletePurchaseUseCase deletePurchase;
     private final FindAllPurchasesUseCase findAllPurchases;
 
-    public PurchaseController(CreatePurchaseUseCase createPurchase, PurchaseResponseMapper responseMapper, DeletePurchaseUseCase deletePurchase, FindAllPurchasesUseCase findAllPurchases
+    public PurchaseController(CreatePurchaseUseCase createPurchase, DeletePurchaseUseCase deletePurchase, FindAllPurchasesUseCase findAllPurchases
     ) {
         this.createPurchase = createPurchase;
-        this.responseMapper = responseMapper;
         this.deletePurchase = deletePurchase;
         this.findAllPurchases = findAllPurchases;
     }

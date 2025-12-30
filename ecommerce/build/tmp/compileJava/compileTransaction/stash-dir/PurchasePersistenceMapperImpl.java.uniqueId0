@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-22T18:36:43-0300",
+    date = "2025-12-30T18:02:01-0300",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -26,21 +26,16 @@ public class PurchasePersistenceMapperImpl implements PurchasePersistenceMapper 
         }
 
         String paymentMethod = null;
+        List<PurchaseItem> items = null;
         UUID id = null;
         UUID clientId = null;
 
         paymentMethod = entity.getPaymentMethod();
+        items = purchaseItemEntityListToPurchaseItemList( entity.getItems() );
         id = entity.getId();
         clientId = entity.getClientId();
 
-        Purchase purchase = new Purchase( id, clientId, paymentMethod );
-
-        if ( purchase.getItems() != null ) {
-            List<PurchaseItem> list = purchaseItemEntityListToPurchaseItemList( entity.getItems() );
-            if ( list != null ) {
-                purchase.getItems().addAll( list );
-            }
-        }
+        Purchase purchase = new Purchase( id, clientId, paymentMethod, items );
 
         return purchase;
     }
@@ -56,6 +51,7 @@ public class PurchasePersistenceMapperImpl implements PurchasePersistenceMapper 
         purchaseEntity.setPaymentMethod( purchase.getPaymentMethod() );
         purchaseEntity.setId( purchase.getId() );
         purchaseEntity.setClientId( purchase.getClientId() );
+        purchaseEntity.setTotal( purchase.getTotal() );
         purchaseEntity.setItems( purchaseItemListToPurchaseItemEntityList( purchase.getItems() ) );
 
         return purchaseEntity;

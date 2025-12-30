@@ -1,17 +1,22 @@
 package com.gabrielle.ecommerce.domain;
 
 import com.gabrielle.ecommerce.domain.annotation.Default;
+import com.gabrielle.ecommerce.domain.enums.PurchaseStatus;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.*;
 
 @Getter
 public class Purchase {
     private UUID id;
     private final UUID clientId;
-    private final List<PurchaseItem> items = new ArrayList<>();
+    private List<PurchaseItem> items = new ArrayList<>();
     private final String paymentMethod;
+    private Instant createdAt;
+    private PurchaseStatus status;
+    private BigDecimal total;
 
     public Purchase(UUID clientId, String paymentMethod) {
         validateMethodPayment(paymentMethod);
@@ -21,16 +26,24 @@ public class Purchase {
     }
 
     @Default
-    public Purchase(UUID id, UUID clientId, String paymentMethod) {
-        validateMethodPayment(paymentMethod);
-
+    public Purchase(UUID id, UUID clientId, String paymentMethod, List<PurchaseItem> items) {
         this.id = id;
         this.clientId = clientId;
         this.paymentMethod = paymentMethod;
+        this.items = List.copyOf(items);
+        this.createdAt = Instant.now();
+        this.status = PurchaseStatus.PENDING;
+        this.total = calculateTotal();
     }
 
     public static Purchase createWithClient(UUID clientId, String paymentMethod) {
         return new Purchase(clientId, paymentMethod);
+    }
+
+    public void finalizePurchase() {
+        this.createdAt = Instant.now();
+        this.status = PurchaseStatus.PENDING;
+        this.total = calculateTotal();
     }
 
     public BigDecimal calculateTotal(){

@@ -6,7 +6,7 @@ import com.gabrielle.ecommerce.domain.Purchase;
 import com.gabrielle.ecommerce.domain.PurchaseItem;
 import com.gabrielle.ecommerce.domain.enums.PurchaseStatus;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-22T18:36:42-0300",
+    date = "2025-12-30T18:02:01-0300",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -33,17 +33,19 @@ public class PurchaseResponseMapperImpl implements PurchaseResponseMapper {
 
         UUID purchaseId = null;
         UUID clientId = null;
+        PurchaseStatus status = null;
+        BigDecimal total = null;
+        Instant createdAt = null;
         String paymentMethod = null;
         List<PurchaseItemResponse> items = null;
 
         purchaseId = domain.getId();
         clientId = domain.getClientId();
+        status = domain.getStatus();
+        total = domain.getTotal();
+        createdAt = domain.getCreatedAt();
         paymentMethod = domain.getPaymentMethod();
         items = purchaseItemListToPurchaseItemResponseList( domain.getItems() );
-
-        PurchaseStatus status = null;
-        BigDecimal total = null;
-        LocalDateTime createdAt = null;
 
         PurchaseResponse purchaseResponse = new PurchaseResponse( purchaseId, clientId, status, total, createdAt, paymentMethod, items );
 
