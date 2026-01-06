@@ -1,5 +1,6 @@
 package com.gabrielle.ecommerce.adapter.http.controller;
 
+import com.gabrielle.ecommerce.adapter.http.controller.docs.ProductControllerDoc;
 import com.gabrielle.ecommerce.application.dto.product.ProductRequestDTO;
 import com.gabrielle.ecommerce.application.dto.product.ProductResponseDTO;
 import com.gabrielle.ecommerce.application.service.product.*;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/product")
-public class ProductController {
+public class ProductController implements ProductControllerDoc {
     private final CreateProductUseCase createProduct;
     private final DeleteProductUseCase deleteProduct;
     private final FindByProductIdUseCase findByProductId;

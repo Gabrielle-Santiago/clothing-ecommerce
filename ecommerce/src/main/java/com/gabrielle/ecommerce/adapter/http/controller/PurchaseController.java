@@ -1,5 +1,6 @@
 package com.gabrielle.ecommerce.adapter.http.controller;
 
+import com.gabrielle.ecommerce.adapter.http.controller.docs.PurchaseControllerDoc;
 import com.gabrielle.ecommerce.application.dto.purchase.PurchaseRequest;
 import com.gabrielle.ecommerce.application.dto.purchase.PurchaseResponse;
 import com.gabrielle.ecommerce.application.service.purchase.*;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/purchases")
-public class PurchaseController {
+public class PurchaseController implements PurchaseControllerDoc {
 
     private final CreatePurchaseUseCase createPurchase;
     private final DeletePurchaseUseCase deletePurchase;

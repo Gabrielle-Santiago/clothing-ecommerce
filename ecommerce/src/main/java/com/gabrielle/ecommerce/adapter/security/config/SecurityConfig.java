@@ -1,6 +1,8 @@
 package com.gabrielle.ecommerce.adapter.security.config;
 
 import com.gabrielle.ecommerce.adapter.security.JwtAuthenticationFilter;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,8 +18,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@SecurityScheme(name = SecurityConfig.SECURITY, type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 public class SecurityConfig {
 
+    public static final String SECURITY = "authBearer";
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
@@ -31,6 +35,7 @@ public class SecurityConfig {
                 .cors(cors -> {})
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register/seller").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/register/client").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
