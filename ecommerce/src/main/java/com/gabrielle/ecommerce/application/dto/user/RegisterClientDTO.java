@@ -2,6 +2,9 @@ package com.gabrielle.ecommerce.application.dto.user;
 
 import com.gabrielle.ecommerce.domain.enums.UserRole;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.*;
 
 @Schema(
         name = "RegisterClientRequest",
@@ -13,12 +16,15 @@ public record RegisterClientDTO(
                 description = "Unique username used for authentication",
                 example = "client_123"
         )
+        @NotNull
+        @NotBlank
         String username,
 
         @Schema(
                 description = "User password",
                 example = "StrongPassword123"
         )
+        @NotNull
         String passwd,
 
         @Schema(
@@ -31,6 +37,7 @@ public record RegisterClientDTO(
                 description = "Client email address",
                 example = "client@email.com"
         )
+        @Email
         String email,
 
         @Schema(
@@ -49,6 +56,7 @@ public record RegisterClientDTO(
                 description = "Role assigned to the user",
                 example = "CLIENT"
         )
+        @Enumerated(EnumType.STRING)
         UserRole role,
 
         @Schema(

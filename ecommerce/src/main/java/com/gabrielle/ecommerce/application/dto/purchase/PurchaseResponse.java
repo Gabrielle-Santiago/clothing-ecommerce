@@ -2,6 +2,8 @@ package com.gabrielle.ecommerce.application.dto.purchase;
 
 import com.gabrielle.ecommerce.domain.enums.PurchaseStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -18,24 +20,28 @@ public record PurchaseResponse(
                 description = "Unique identifier of the purchase",
                 example = "8a2f3c4d-9e3b-4a5f-9c2d-123456789abc"
         )
+        @Id
         UUID purchaseId,
 
         @Schema(
                 description = "Unique identifier of the client who made the purchase",
                 example = "550e8400-e29b-41d4-a716-446655440000"
         )
+        @Id
         UUID clientId,
 
         @Schema(
                 description = "Current status of the purchase",
                 example = "CREATED"
         )
+        @Enumerated(EnumType.STRING)
         PurchaseStatus status,
 
         @Schema(
                 description = "Total amount of the purchase",
                 example = "199.80"
         )
+        @Column(precision = 10, scale = 2)
         BigDecimal total,
 
         @Schema(

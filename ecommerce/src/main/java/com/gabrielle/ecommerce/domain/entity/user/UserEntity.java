@@ -2,11 +2,8 @@ package com.gabrielle.ecommerce.domain.entity.user;
 
 import com.gabrielle.ecommerce.domain.enums.UserRole;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -22,8 +19,14 @@ public abstract class UserEntity {
     @Column(nullable = false)
     private UUID id;
 
+    @NotNull
+    @NotBlank
     private String username;
+
+    @NotNull
+    @NotBlank
     private String passwd;
+
     private String name;
 
     @Email

@@ -1,6 +1,8 @@
 package com.gabrielle.ecommerce.application.dto.product;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -15,6 +17,7 @@ public record ProductResponseDTO(
                 description = "Unique identifier of the product",
                 example = "3fa85f64-5717-4562-b3fc-2c963f66afa6"
         )
+        @Id
         UUID id,
 
         @Schema(
@@ -38,7 +41,7 @@ public record ProductResponseDTO(
         @Schema(
                 description = "Product unit price",
                 example = "79.90"
-        )
+        )@Column(precision = 10, scale = 2)
         BigDecimal price,
 
         @Schema(

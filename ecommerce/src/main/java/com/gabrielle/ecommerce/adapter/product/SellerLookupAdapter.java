@@ -3,8 +3,8 @@ package com.gabrielle.ecommerce.adapter.product;
 import com.gabrielle.ecommerce.application.service.impl.UserDetailsImpl;
 import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
 import com.gabrielle.ecommerce.ports.SellerLookupPort;
-import com.gabrielle.ecommerce.shared.exception.NotFoundUser;
 import com.gabrielle.ecommerce.shared.exception.authentication.UserNotAuthenticatedException;
+import com.gabrielle.ecommerce.shared.exception.authentication.UserNotFoundException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -25,10 +25,9 @@ public class SellerLookupAdapter implements SellerLookupPort {
         UserEntity user = principal.getUser();
 
         if (!user.getRole().getRole().equals("SELLER")) {
-            throw new NotFoundUser("This user is not a seller");
+            throw new UserNotFoundException("This user is not a seller");
         }
 
-        return user.getId();
-    }
+        return user.getId();    }
 }
 

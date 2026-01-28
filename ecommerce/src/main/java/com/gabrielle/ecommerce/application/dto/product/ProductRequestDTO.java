@@ -1,6 +1,7 @@
 package com.gabrielle.ecommerce.application.dto.product;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
 
 import java.math.BigDecimal;
 
@@ -32,6 +33,7 @@ public record ProductRequestDTO(
                 description = "Product unit price",
                 example = "79.90"
         )
+        @Column(precision = 10, scale = 2)
         BigDecimal price,
 
         @Schema(

@@ -23,11 +23,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
-    @ExceptionHandler(NotFoundUser.class)
-    public ResponseEntity<String> handleNotFoundSellerException(NotFoundUser ex){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-    }
-
     @ExceptionHandler(UserNotAuthenticatedException.class)
     public ResponseEntity<String> handleUserNotAuthenticatedException(UserNotAuthenticatedException ex){
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
@@ -40,6 +35,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PriceGreaterThanZeroException.class)
     public ResponseEntity<String> handlePriceGreaterThanZeroException(PriceGreaterThanZeroException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(ItemNotNullException.class)
+    public ResponseEntity<String> handleItemNotNullException(ItemNotNullException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(PaymentRequiredException.class)
+    public ResponseEntity<String> handlePaymentRequiredException(PaymentRequiredException ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 }

@@ -1,6 +1,7 @@
 package com.gabrielle.ecommerce.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -20,10 +21,15 @@ public class ProductEntity {
     private String nameProduct;
     private String size;
     private int quant;
+
+    @Column(precision = 10, scale = 2)
     private BigDecimal price;
+
     private String describe;
     private String img;
-    @Column(name = "seller_id")
+
+    @Column(name = "seller_id", nullable = false)
+    @NotNull
     private UUID seller;
 
     public ProductEntity(String nameProduct, String size, int quant, BigDecimal price, String describe, String img, UUID seller) {

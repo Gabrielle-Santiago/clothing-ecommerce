@@ -1,12 +1,8 @@
 package com.gabrielle.ecommerce.application.dto.purchase;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
-import java.util.UUID;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +18,7 @@ public record PurchaseRequest(
                 example = "550e8400-e29b-41d4-a716-446655440000"
         )
         @JsonProperty("clientId")
+        @Id
         UUID clientId,
 
         @Schema(

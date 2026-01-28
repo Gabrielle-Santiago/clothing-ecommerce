@@ -3,8 +3,8 @@ package com.gabrielle.ecommerce.adapter;
 import com.gabrielle.ecommerce.application.service.impl.UserDetailsImpl;
 import com.gabrielle.ecommerce.domain.entity.user.UserEntity;
 import com.gabrielle.ecommerce.ports.ClientLookupPort;
-import com.gabrielle.ecommerce.shared.exception.NotFoundUser;
 import com.gabrielle.ecommerce.shared.exception.authentication.UserNotAuthenticatedException;
+import com.gabrielle.ecommerce.shared.exception.authentication.UserNotFoundException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,7 @@ public class ClientLookupAdapter implements ClientLookupPort {
         UserEntity user = principal.getUser();
 
         if (!user.getRole().getRole().equals("CLIENT")) {
-            throw new NotFoundUser("This user is not a client");
+            throw new UserNotFoundException("This user is not a client");
         }
 
         return user.getId();

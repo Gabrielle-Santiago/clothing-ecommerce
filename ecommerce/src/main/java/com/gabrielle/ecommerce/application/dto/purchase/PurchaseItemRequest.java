@@ -2,6 +2,8 @@ package com.gabrielle.ecommerce.application.dto.purchase;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -17,6 +19,7 @@ public record PurchaseItemRequest(
                 example = "f47ac10b-58cc-4372-a567-0e02b2c3d479"
         )
         @JsonProperty("productId")
+        @Id
         UUID productId,
 
         @Schema(
@@ -31,6 +34,7 @@ public record PurchaseItemRequest(
                 example = "99.90"
         )
         @JsonProperty("unitPrice")
+        @Column(precision = 10, scale = 2)
         BigDecimal unitPrice
 
 ) {}

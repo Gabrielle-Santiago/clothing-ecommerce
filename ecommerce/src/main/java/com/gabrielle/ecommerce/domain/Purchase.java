@@ -2,6 +2,9 @@ package com.gabrielle.ecommerce.domain;
 
 import com.gabrielle.ecommerce.domain.annotation.Default;
 import com.gabrielle.ecommerce.domain.enums.PurchaseStatus;
+import com.gabrielle.ecommerce.shared.exception.ItemNotNullException;
+import com.gabrielle.ecommerce.shared.exception.PaymentRequiredException;
+import com.gabrielle.ecommerce.shared.exception.QuantityGreaterThanZeroException;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -48,7 +51,7 @@ public class Purchase {
 
     public BigDecimal calculateTotal(){
         if (items.isEmpty()){
-            throw new IllegalArgumentException("Purchase must have at least one item");
+            throw new QuantityGreaterThanZeroException("Purchase must have at least one item");
         }
 
         return items.stream()
@@ -58,13 +61,13 @@ public class Purchase {
 
     public void validateMethodPayment(String paymentMethod){
         if (paymentMethod == null || paymentMethod.isBlank()) {
-            throw new IllegalArgumentException("Payment method is required");
+            throw new PaymentRequiredException("Payment method is required");
         }
     }
 
     public void addItem(PurchaseItem item) {
         if (item == null) {
-            throw new IllegalArgumentException("Item cannot be null");
+            throw new ItemNotNullException("Item cannot be null");
         }
         items.add(item);
     }
