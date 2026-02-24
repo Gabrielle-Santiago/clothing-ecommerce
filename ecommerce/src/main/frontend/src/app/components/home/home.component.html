@@ -1,3 +1,69 @@
-<p>home.component works!</p>
-<router-outlet></router-outlet>
+<section class="hero" id="home">
+  <div class="hero__content">
+    <h1 class="hero__title">Aqui haverá uma frase chamativa</h1>
 
+    <a class="btn" routerLink="/form-client">
+      Cadastrar-se
+    </a>
+  </div>
+
+  <figure class="hero__image">
+    <img src="assets/img/casal.png" alt="Casal feliz usando roupas da coleção">
+  </figure>
+</section>
+
+<section class="categories">
+  <h2 class="categories__title">Categorias</h2>
+
+  <div class="categories__grid">
+
+    <article class="category-card">
+      <div class="category-card__image blouse"></div>
+      <p class="category-card__name">Blusas</p>
+    </article>
+
+    <article class="category-card">
+      <div class="category-card__image shirt"></div>
+      <p class="category-card__name">Camisas</p>
+    </article>
+
+    <article class="category-card">
+      <div class="category-card__image dress"></div>
+      <p class="category-card__name">Vestidos</p>
+    </article>
+
+    <article class="category-card">
+      <div class="category-card__image short"></div>
+      <p class="category-card__name">Shorts</p>
+    </article>
+
+    <article class="category-card">
+      <div class="category-card__image pants"></div>
+      <p class="category-card__name">Calças</p>
+    </article>
+
+    <article class="category-card">
+      <div class="category-card__image skirt"></div>
+      <p class="category-card__name">Saias</p>
+    </article>
+
+  </div>
+</section>
+
+<section class="banner">
+  <div class="banner__content">
+    <img class="banner_img">
+  </div>
+</section>
+
+<section class="product">
+  <div class="left-arrow"></div>
+  <article class="product-card">
+    <img class="product__img">
+  </article>
+  <div class="right-arrow" style="transform: rotate(225deg);"></div>
+</section>
+
+<footer class="footer"></footer>
+
+<router-outlet></router-outlet>
