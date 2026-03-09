@@ -41,4 +41,12 @@ public class PurchaseAdapter implements PurchaseRepository {
         List<PurchaseEntity> entity = repository.findAll();
         return entity.stream().map(mapper::toDomain).toList();
     }
+
+    @Override
+    public Purchase findById(UUID id) {
+        PurchaseEntity entity = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Not Found"));
+
+        return mapper.toDomain(entity);
+    }
 }

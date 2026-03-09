@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-01-19T08:31:08-0300",
+    date = "2026-03-09T11:37:54-0300",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -53,6 +53,7 @@ public class PurchaseItemResponseMapperImpl implements PurchaseItemResponseMappe
         purchaseEntity.setClientId( purchase.getClientId() );
         purchaseEntity.setPaymentMethod( purchase.getPaymentMethod() );
         purchaseEntity.setItems( purchaseItemListToPurchaseItemEntityList( purchase.getItems() ) );
+        purchaseEntity.setStatus( purchase.getStatus() );
 
         purchaseEntity.setTotal( purchase.calculateTotal() );
 

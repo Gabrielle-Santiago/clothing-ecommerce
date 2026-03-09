@@ -13,7 +13,6 @@ public interface PurchasePersistenceMapper {
     @Mapping(target = "paymentMethod", source = "paymentMethod")
     PurchaseEntity toEntity(Purchase purchase);
 
-
     @Mapping(target = "purchase", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "productName", ignore = true)

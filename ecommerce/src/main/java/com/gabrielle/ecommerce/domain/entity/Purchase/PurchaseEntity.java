@@ -1,5 +1,6 @@
 package com.gabrielle.ecommerce.domain.entity.Purchase;
 
+import com.gabrielle.ecommerce.domain.enums.PurchaseStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,4 +33,8 @@ public class PurchaseEntity {
 
     @OneToMany( mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true)
     List<PurchaseItemEntity> items = new ArrayList<>();
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private PurchaseStatus status;
 }

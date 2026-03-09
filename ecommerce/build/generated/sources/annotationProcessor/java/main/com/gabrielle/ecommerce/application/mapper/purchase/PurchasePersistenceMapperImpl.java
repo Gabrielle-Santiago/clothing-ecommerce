@@ -4,6 +4,7 @@ import com.gabrielle.ecommerce.domain.Purchase;
 import com.gabrielle.ecommerce.domain.PurchaseItem;
 import com.gabrielle.ecommerce.domain.entity.Purchase.PurchaseEntity;
 import com.gabrielle.ecommerce.domain.entity.Purchase.PurchaseItemEntity;
+import com.gabrielle.ecommerce.domain.enums.PurchaseStatus;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-01-19T08:31:07-0300",
+    date = "2026-03-09T11:37:54-0300",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
@@ -29,13 +30,15 @@ public class PurchasePersistenceMapperImpl implements PurchasePersistenceMapper 
         List<PurchaseItem> items = null;
         UUID id = null;
         UUID clientId = null;
+        PurchaseStatus status = null;
 
         paymentMethod = entity.getPaymentMethod();
         items = purchaseItemEntityListToPurchaseItemList( entity.getItems() );
         id = entity.getId();
         clientId = entity.getClientId();
+        status = entity.getStatus();
 
-        Purchase purchase = new Purchase( id, clientId, paymentMethod, items );
+        Purchase purchase = new Purchase( id, clientId, paymentMethod, items, status );
 
         return purchase;
     }
@@ -53,6 +56,7 @@ public class PurchasePersistenceMapperImpl implements PurchasePersistenceMapper 
         purchaseEntity.setClientId( purchase.getClientId() );
         purchaseEntity.setTotal( purchase.getTotal() );
         purchaseEntity.setItems( purchaseItemListToPurchaseItemEntityList( purchase.getItems() ) );
+        purchaseEntity.setStatus( purchase.getStatus() );
 
         return purchaseEntity;
     }

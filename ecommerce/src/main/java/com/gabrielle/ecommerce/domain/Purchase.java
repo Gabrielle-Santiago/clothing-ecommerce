@@ -29,13 +29,13 @@ public class Purchase {
     }
 
     @Default
-    public Purchase(UUID id, UUID clientId, String paymentMethod, List<PurchaseItem> items) {
+    public Purchase(UUID id, UUID clientId, String paymentMethod, List<PurchaseItem> items, PurchaseStatus status) {
         this.id = id;
         this.clientId = clientId;
         this.paymentMethod = paymentMethod;
         this.items = List.copyOf(items);
         this.createdAt = Instant.now();
-        this.status = PurchaseStatus.PENDING;
+        this.status = status;
         this.total = calculateTotal();
     }
 
@@ -45,7 +45,7 @@ public class Purchase {
 
     public void finalizePurchase() {
         this.createdAt = Instant.now();
-        this.status = PurchaseStatus.PENDING;
+        this.status = PurchaseStatus.CREATED;
         this.total = calculateTotal();
     }
 
@@ -70,5 +70,33 @@ public class Purchase {
             throw new ItemNotNullException("Item cannot be null");
         }
         items.add(item);
+    }
+
+    public void markAsPending(){
+        if (status != PurchaseStatus.CREATED){
+            throw new IllegalStateException("Only CREATED can go to PENDING");
+        }
+        this.status = PurchaseStatus.PENDING;
+    }
+
+    public void approve(){
+        if (status != PurchaseStatus.PENDING){
+            throw new IllegalStateException("Only PENDING can be approved");
+        }
+        this.status = PurchaseStatus.APPROVED;
+    }
+
+    public void reject(){
+        if (status != PurchaseStatus.PENDING){
+            throw new IllegalStateException("Only PENDING can be rejected");
+        }
+        this.status = PurchaseStatus.REJECTED;
+    }
+
+    public void cancel(){
+        if (status != PurchaseStatus.CREATED){
+            throw new IllegalStateException("Only CREATED can be cancelled");
+        }
+        this.status = PurchaseStatus.CANCELED;
     }
 }

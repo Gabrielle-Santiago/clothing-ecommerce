@@ -9,4 +9,5 @@ public interface PurchaseRepository {
     Purchase save(Purchase purchase);
     void deleteById(UUID id);
     List<Purchase> findAll();
+    Purchase findById(UUID id);
 }

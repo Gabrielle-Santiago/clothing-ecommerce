@@ -19,12 +19,13 @@ public class PurchaseController implements PurchaseControllerDoc {
     private final CreatePurchaseUseCase createPurchase;
     private final DeletePurchaseUseCase deletePurchase;
     private final FindAllPurchasesUseCase findAllPurchases;
+    private final PurchaseService purchaseService;
 
-    public PurchaseController(CreatePurchaseUseCase createPurchase, DeletePurchaseUseCase deletePurchase, FindAllPurchasesUseCase findAllPurchases
-    ) {
+    public PurchaseController(CreatePurchaseUseCase createPurchase, DeletePurchaseUseCase deletePurchase, FindAllPurchasesUseCase findAllPurchases, PurchaseService purchaseService) {
         this.createPurchase = createPurchase;
         this.deletePurchase = deletePurchase;
         this.findAllPurchases = findAllPurchases;
+        this.purchaseService = purchaseService;
     }
 
     @PostMapping
@@ -43,6 +44,18 @@ public class PurchaseController implements PurchaseControllerDoc {
     public ResponseEntity<List<PurchaseResponse>> getAllPurchases(){
         List<PurchaseResponse> response = findAllPurchases.execute();
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/{id}/payment")
+    public ResponseEntity<Void> startPayment(@PathVariable UUID id) {
+        purchaseService.startPayment(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/cancel")
+    public ResponseEntity<Void> cancel(@PathVariable UUID id) {
+        purchaseService.cancel(id);
+        return ResponseEntity.ok().build();
     }
 }
 
