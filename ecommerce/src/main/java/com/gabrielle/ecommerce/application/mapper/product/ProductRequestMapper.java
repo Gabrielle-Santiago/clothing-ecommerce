@@ -9,6 +9,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ProductRequestMapper {
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "sellerId", ignore = true)
+    @Mapping(target = "sellerId", expression = "java(seller.getId())")
     Product toDomain(ProductRequestDTO requestDTO, Seller seller);
 }
