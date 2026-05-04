@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/product/**").hasRole("SELLER")
                         .requestMatchers(HttpMethod.POST, "/webhook/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/purchases/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/payments").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
