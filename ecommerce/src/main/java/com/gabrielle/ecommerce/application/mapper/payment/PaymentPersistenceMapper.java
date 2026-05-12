@@ -12,10 +12,11 @@ public interface PaymentPersistenceMapper {
         return Payment.restore(
                 entity.getId(),
                 entity.getStatus(),
-                entity.getPurchase(),
+                entity.getPurchaseId(),
                 entity.getCheckoutUrl(),
                 entity.getPayerEmail(),
-                entity.getAmount()
+                entity.getAmount(),
+                entity.getExternalId()
         );
     }
 }

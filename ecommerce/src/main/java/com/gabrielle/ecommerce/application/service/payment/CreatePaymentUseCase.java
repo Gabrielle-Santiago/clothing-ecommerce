@@ -1,39 +1,42 @@
 package com.gabrielle.ecommerce.application.service.payment;
 
 import com.gabrielle.ecommerce.application.dto.payment.*;
+import com.gabrielle.ecommerce.application.dto.purchase.PurchasePaymentData;
 import com.gabrielle.ecommerce.application.mapper.payment.PaymentResponseMapper;
 import com.gabrielle.ecommerce.domain.Payment;
-import com.gabrielle.ecommerce.domain.Purchase;
+import com.gabrielle.ecommerce.ports.repository.payment.PaymentGatewayRepository;
 import com.gabrielle.ecommerce.ports.repository.payment.PaymentRepository;
 import com.gabrielle.ecommerce.ports.repository.purchase.PurchaseRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.UUID;
-
 @Service
 public class CreatePaymentUseCase {
-    public final PaymentRepository paymentRepository;
-    public final PaymentResponseMapper mapper;
-    public final PurchaseRepository purchaseRepository;
 
-    public CreatePaymentUseCase(PaymentRepository paymentRepository, PaymentResponseMapper mapper, PurchaseRepository purchaseRepository) {
+    private final PaymentRepository paymentRepository;
+    private final PurchaseRepository purchaseRepository;
+    private final PaymentGatewayRepository paymentGateway;
+    private final PaymentResponseMapper mapper;
+
+    public CreatePaymentUseCase(PaymentRepository paymentRepository, PurchaseRepository purchaseRepository,
+            PaymentGatewayRepository paymentGateway, PaymentResponseMapper mapper)
+    {
         this.paymentRepository = paymentRepository;
-        this.mapper = mapper;
         this.purchaseRepository = purchaseRepository;
+        this.paymentGateway = paymentGateway;
+        this.mapper = mapper;
     }
 
-    public PaymentResponse execute(PaymentRequest request){
-        Purchase purchase = purchaseRepository.findById(request.purchaseId());
+    public PaymentResponse execute(PaymentRequest request) {
+        PurchasePaymentData purchaseData =
+                purchaseRepository.findPaymentDataById(request.purchaseId());
 
+        Payment payment = Payment.create(purchaseData.purchaseId(), request.payerEmail(), purchaseData.total());
 
-        UUID purchaseId = purchase.getId();
-        BigDecimal amount = purchase.getTotal();
-        String email = request.payerEmail();
+        PaymentGatewayResponse gatewayResponse = paymentGateway.createPayment(payment);
+        payment.updatePaymentData(gatewayResponse.checkoutUrl(), gatewayResponse.externalId());
 
-        Payment payment = Payment.create(purchaseId, email, amount);
-        Payment savePayment = paymentRepository.save(payment);
+        Payment saved = paymentRepository.save(payment);
 
-        return mapper.toDTO(savePayment);
+        return mapper.toDTO(saved);
     }
 }

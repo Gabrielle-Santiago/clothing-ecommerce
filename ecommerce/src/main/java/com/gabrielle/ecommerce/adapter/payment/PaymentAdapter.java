@@ -7,7 +7,6 @@ import com.gabrielle.ecommerce.ports.repository.payment.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 public class PaymentAdapter implements PaymentRepository {
@@ -29,12 +28,6 @@ public class PaymentAdapter implements PaymentRepository {
     @Override
     public Optional<Payment> findByExternalId(String externalId) {
         Optional<PaymentEntity> entity = repository.findByExternalId(externalId);
-        return entity.map(mapper::toDomain);
-    }
-
-    @Override
-    public Optional<Payment> findById(UUID id) {
-        Optional<PaymentEntity> entity = repository.findById(id);
         return entity.map(mapper::toDomain);
     }
 }

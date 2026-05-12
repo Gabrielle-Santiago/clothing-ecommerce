@@ -17,7 +17,7 @@ public class PaymentController {
     }
 
     @PostMapping
-    public ResponseEntity<PaymentResponse> createPayment(@Valid @RequestBody PaymentRequest request){
+    public ResponseEntity<PaymentResponse> create(@Valid @RequestBody PaymentRequest request){
         PaymentResponse response = create.execute(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

@@ -1,5 +1,6 @@
 package com.gabrielle.ecommerce.adapter;
 
+import com.gabrielle.ecommerce.application.dto.purchase.PurchasePaymentData;
 import com.gabrielle.ecommerce.application.mapper.purchase.PurchasePersistenceMapper;
 import com.gabrielle.ecommerce.domain.Purchase;
 import com.gabrielle.ecommerce.domain.entity.Purchase.PurchaseEntity;
@@ -48,5 +49,11 @@ public class PurchaseAdapter implements PurchaseRepository {
                 .orElseThrow(() -> new RuntimeException("Not Found"));
 
         return mapper.toDomain(entity);
+    }
+
+    @Override
+    public PurchasePaymentData findPaymentDataById(UUID id) {
+        return repository.findPaymentDataById(id)
+                .orElseThrow(() -> new RuntimeException("Purchase not found"));
     }
 }

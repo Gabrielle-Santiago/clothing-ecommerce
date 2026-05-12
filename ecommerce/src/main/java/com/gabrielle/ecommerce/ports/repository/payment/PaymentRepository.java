@@ -8,5 +8,4 @@ import java.util.UUID;
 public interface PaymentRepository {
     Payment save(Payment payment);
     Optional<Payment> findByExternalId(String externalId);
-    Optional<Payment> findById(UUID id);
 }

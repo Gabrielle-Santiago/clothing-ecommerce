@@ -1,5 +1,6 @@
 package com.gabrielle.ecommerce.ports.repository.purchase;
 
+import com.gabrielle.ecommerce.application.dto.purchase.PurchasePaymentData;
 import com.gabrielle.ecommerce.domain.Purchase;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface PurchaseRepository {
     void deleteById(UUID id);
     List<Purchase> findAll();
     Purchase findById(UUID id);
+    PurchasePaymentData findPaymentDataById(UUID id);
 }

@@ -5,7 +5,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.gabrielle.ecommerce.domain.Purchase;
 import com.gabrielle.ecommerce.domain.enums.PaymentStatus;
 import lombok.*;
 import jakarta.persistence.*;
@@ -18,15 +17,13 @@ import jakarta.persistence.*;
 @AllArgsConstructor
 public class PaymentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
     private UUID id;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 
-    private UUID purchase;
-
+    private UUID purchaseId;
     private Instant createdAt;
     private String statusDetail;
     private String externalId;
