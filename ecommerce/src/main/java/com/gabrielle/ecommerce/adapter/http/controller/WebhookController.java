@@ -1,5 +1,6 @@
 package com.gabrielle.ecommerce.adapter.http.controller;
 
+import com.gabrielle.ecommerce.adapter.http.controller.docs.WebhookControllerDoc;
 import com.gabrielle.ecommerce.application.service.purchase.PurchaseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/webhook")
-public class WebhookController {
+public class WebhookController implements WebhookControllerDoc {
 
     private final PurchaseService purchaseService;
 

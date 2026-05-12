@@ -1,5 +1,6 @@
 package com.gabrielle.ecommerce.adapter.http.controller;
 
+import com.gabrielle.ecommerce.adapter.http.controller.docs.PaymentControllerDoc;
 import com.gabrielle.ecommerce.application.dto.payment.*;
 import com.gabrielle.ecommerce.application.service.payment.*;
 import jakarta.validation.Valid;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/payments")
-public class PaymentController {
+public class PaymentController implements PaymentControllerDoc {
     private final CreatePaymentUseCase create;
 
     public PaymentController(CreatePaymentUseCase create) {
