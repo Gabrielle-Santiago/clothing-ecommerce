@@ -14,7 +14,13 @@
       <assistant-state connection-id="6a015b11-4951-4383-bbd8-05e386315b0d" assistant-type="SELECT_AI" default-profile-name="" selected-chat-id="" availability="UNAVAILABLE" acknowledgement="NONE">
         <tools />
       </assistant-state>
-      <assistant-state connection-id="6a015b11-4951-4383-bbd8-05e386315b0d" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="" availability="AVAILABLE" acknowledgement="NONE" selected="true">
+      <assistant-state connection-id="6a015b11-4951-4383-bbd8-05e386315b0d" assistant-type="PUBLIC" default-profile-name="" selected-chat-id="5085C6AFD85B4817A990E077DDDFB801" availability="AVAILABLE" acknowledgement="ENGAGED" selected="true">
+        <chats>
+          <chat id="5085C6AFD85B4817A990E077DDDFB801" title="" session-signature="" timestamp="1778675002627">
+            <messages />
+            <context provider="" profile="" model="" action="" interactive="true" />
+          </chat>
+        </chats>
         <tools />
       </assistant-state>
     </assistants>
