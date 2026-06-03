@@ -1,7 +1,7 @@
 .toolbar {
   width: 100%;
   height: 80px;
-  padding: 0 1rem;
+  padding: 0 3rem;
 
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@
   &__brand {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
     flex-shrink: 0;
   }
 
@@ -29,7 +29,7 @@
 
   &__brand-name {
     font-family: "Playfair Display", serif;
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     font-weight: 700;
 
     color: #B35C44;
@@ -39,7 +39,7 @@
   &__navigation {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 4rem;
     margin: 0 auto;
   }
 
@@ -61,7 +61,7 @@
   &__actions {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1.2rem;
     flex-shrink: 0;
   }
 
@@ -123,6 +123,11 @@
     &:hover {
       color: #B35C44;
     }
+  }
+
+  &__icon-user, &__icon-bag {
+      width: 20px;
+      height: 20px;
   }
 
   &__menu {
