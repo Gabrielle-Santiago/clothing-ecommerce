@@ -1,0 +1,155 @@
+.hero-banner {
+  width: 100%;
+  position: relative;
+
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.hero-banner__image {
+  width: 100%;
+  height: 500px;
+
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.hero-banner__content {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+
+  transform: translateY(-50%);
+  max-width: 500px;
+
+  z-index: 2;
+}
+
+.hero-banner__title {
+  margin-bottom: 1rem;
+
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.1;
+
+  color: #e5e4e4;
+}
+
+.hero-banner__description {
+  margin-bottom: 2rem;
+
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+
+  color: #e5e4e4;
+}
+
+.hero-banner__button {
+  padding: 1rem 2rem;
+  color: #1f1e1e;
+  background-color: #e1e1e1;
+
+  border: none;
+  border-radius: 30px;
+
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.hero-banner__button:hover {
+  transform: translateY(-2px);
+  color: #a33715;
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
+
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .hero-banner__image {
+    height: 420px;
+  }
+
+  .hero-banner__content {
+    left: 6%;
+    max-width: 400px;
+  }
+
+  .hero-banner__title {
+    font-size: 3rem;
+  }
+
+  .hero-banner__description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero-banner__button {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-banner__image {
+    height: 350px;
+    object-position: 70% 30%;
+  }
+
+  .hero-banner__content {
+    left: 5%;
+    right: 5%;
+    max-width: 280px;
+  }
+
+  .hero-banner__title {
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+  }
+
+  .hero-banner__button {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner__image {
+    height: 300px;
+  }
+
+  .hero-banner__title {
+    font-size: 1.8rem;
+  }
+
+  .hero-banner__description {
+    display: none;
+  }
+
+  .hero-banner__button {
+    padding: 0.75rem 1.4rem;
+    font-size: 0.85rem;
+  }
+}
