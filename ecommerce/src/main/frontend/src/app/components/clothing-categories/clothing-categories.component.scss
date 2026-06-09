@@ -1,0 +1,51 @@
+.categories {
+  padding: 2rem 8%;
+
+  &__title {
+    margin-bottom: 3rem;
+    text-align: center;
+
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #b35c44;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .categories {
+
+    padding: 2rem 5%;
+
+    &__grid {
+      gap: 1.5rem;
+    }
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .categories {
+
+    padding: 2rem 1.5rem;
+
+    &__title {
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+    }
+
+    &__grid {
+
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+
+    }
+  }
+}

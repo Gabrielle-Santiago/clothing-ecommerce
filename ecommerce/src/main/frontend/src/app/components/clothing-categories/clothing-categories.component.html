@@ -1,0 +1,15 @@
+<section class="categories">
+
+  <h2 class="categories__title"> Categorias </h2>
+
+  <div class="categories__grid">
+
+    @for(category of categories; track category.name) {
+      <app-category-card
+        [category]="category">
+      </app-category-card>
+    }
+
+  </div>
+
+</section>
