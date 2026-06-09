@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy  } from '@angular/core';
-import { CategoryCardComponent } from '../category-card/category-card.component';
-import { Category } from '../../models/category.model';
+import { CategoryCardComponent } from '../../cards/category-card/category-card.component';
+import { Category } from '../../../models/category.model';
 
 @Component({
   selector: 'app-clothing-categories',
