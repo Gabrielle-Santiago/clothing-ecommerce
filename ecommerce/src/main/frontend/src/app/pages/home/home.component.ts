@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeroBannerComponent } from '../../components/sections/hero-banner/hero-banner.component';
 import { ClothingCategoriesComponent } from '../../components/sections/clothing-categories/clothing-categories.component';
 import { PromoSectionComponent } from '../../components/sections/promo-section/promo-section.component';
+import { FooterComponent } from '../../components/layout/footer/footer.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ CommonModule, HeroBannerComponent, ClothingCategoriesComponent, PromoSectionComponent ],
+  imports: [ CommonModule, HeroBannerComponent, ClothingCategoriesComponent,
+    PromoSectionComponent, FooterComponent ],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
