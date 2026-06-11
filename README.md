@@ -1,83 +1,220 @@
-# 🛒 E-commerce Multi-Vendor Engine
+# 🛒 Clothing E-commerce
 
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
-![Architecture](https://img.shields.io/badge/Architecture-Hexagonal-blue)
-![Database](https://img.shields.io/badge/Database-PostgreSQL-336791)
+**Status:** Backend Architecture | Frontend Development | Database
 
-Sistema de e-commerce robusto focado no nicho de moda, desenvolvido com **Arquitetura Hexagonal (Ports & Adapters)**. O sistema é projetado para ser um marketplace real, onde múltiplos vendedores gerenciam seus estoques e clientes realizam compras com processamento de pagamento assíncrono.
+A full-stack e-commerce platform focused on the fashion industry, developed with a scalable architecture approach.
 
----
-
-## 🏗️ Arquitetura do Sistema
-
-O projeto utiliza os princípios da Arquitetura Limpa para garantir o desacoplamento total entre as regras de negócio e os serviços externos.
-
-
-
-### Componentes Principais:
-- **Domínio (Core):** Contém a lógica de negócio pura, entidades e regras de transição de status.
-- **Adapters de Entrada:** REST Controllers (Spring MVC) e Listeners de Webhooks.
-- **Adapters de Saída:** Repositórios (Spring Data JPA) e Gateways de integração com Mercado Pago e Spring Mail.
+The project combines a **Spring Boot backend** and an **Angular frontend** in the same repository, focusing on clean architecture, maintainable code, and real-world application patterns.
 
 ---
 
-## 🔒 Autenticação e Autorização
+# 🏗️ System Architecture
 
-Implementamos um fluxo rigoroso baseado em **OIDC (OpenID Connect)** e **OAuth 2.0**:
+The backend follows **Hexagonal Architecture (Ports & Adapters)** principles, aiming to keep business rules independent from external technologies.
 
-1. **MFA (Multi-Factor Authentication):** Cadastro e login validados via código enviado pelo `Spring Mail`.
-2. **RBAC Dinâmico (Role-Based Access Control):** - As permissões não estão "hardcoded". Elas são carregadas do banco de dados via tabelas de relacionamento (`user_roles`, `role_permissions`).
-   - Papéis principais: `SELLERS` (Gestão de produtos e pedidos) e `CLIENTS` (Compra e histórico).
+## Main Components
 
----
+### Domain (Core)
 
-## 💳 Fluxo de Pagamento (Mercado Pago)
+Contains:
 
-O sistema prioriza a **consistência eventual** para evitar falhas por timeout e melhorar a experiência do usuário.
+* Business entities
+* Domain rules
+* Application logic
+* State transitions
 
-1. **Pedido Criado:** Status inicial `PENDING`.
-2. **Integração:** Cliente é direcionado ao checkout.
-3. **Webhook:** O sistema expõe um endpoint para receber notificações assíncronas do Mercado Pago.
-4. **Atualização:** O status é atualizado apenas após a confirmação do Webhook.
+### Input Adapters
 
-**Ciclo de Vida do Pedido:**
-`PENDING` ➔ `CONFIRMED` ➔ `PROCESSING` ➔ `SHIPPED` ➔ `DELIVERED`
-*(Fluxo alternativo: `CANCELED` em caso de falha no pagamento ou estorno).*
+Responsible for receiving external requests:
 
----
+* REST Controllers
+* API endpoints
 
-## 📊 Estrutura de Dados (ERD)
+### Output Adapters
 
-Abaixo, a organização das tabelas no **PostgreSQL**:
+Responsible for external communication:
 
-| Tabela | Função |
-| :--- | :--- |
-| `users` | Dados centrais de acesso e identificação. |
-| `roles` & `permissions` | Definições dinâmicas de acesso (ex: `can_update_product`). |
-| `stock` | Controle de inventário vinculado ao `product` e ao `seller_id`. |
-| `orders` | Cabeçalho do pedido com status e IDs de transação externa. |
+* Database repositories
+* Third-party integrations
 
 ---
 
-## 🚀 Roadmap de Desenvolvimento
+# 🖥️ Frontend
 
-- [x] Autenticação com TOken/Refresh token.
-- [x] Gestão de Produtos Multi-Vendedor.
-- [ ] **Futuro:** Integração com Webhook do Mercado Pago.
-- [ ] **Futuro:** Implementação de Carrinho de Compras persistido no Postgres.
-- [ ] **Futuro:** Sistema de sugestão de novas categorias por vendedores (Fluxo de Aprovação).
-- [ ] **Futuro:** Dashboard administrativo para comissionamento de vendas.
+The frontend is developed with **Angular**, following modern development practices.
+
+## Technologies
+
+* Angular
+* TypeScript
+* SCSS
+* HTML
+
+## Main Concepts Applied
+
+* Standalone Components
+* Component-based architecture
+* Lazy Loading
+* Change Detection optimization
+* Responsive design
+* Reusable UI components
+
+## Current Frontend Structure
+
+The interface includes:
+
+* Home page
+* Navigation toolbar
+* Hero banner
+* Category section
+* Promotional section
+* Footer
+* Responsive layouts
+
+The frontend is prepared for future API integration with the Spring Boot backend.
 
 ---
 
-## 🤝 Contribuição
+# 🔒 Authentication & Authorization
 
-Este projeto está em constante evolução. Para contribuir:
+The backend implements authentication and authorization using:
 
-1. Faça um **Fork** do projeto.
-2. Crie sua Feature Branch (`git checkout -b feature/NovaFuncionalidade`).
-3. Commit suas mudanças (`git commit -m 'Add: Descrição da funcionalidade'`).
-4. Push para a Branch (`git push origin feature/NovaFuncionalidade`).
-5. Abra um **Pull Request**.
+* JWT authentication
+* Refresh Token flow
+* Role-Based Access Control (RBAC)
+
+## Roles
+
+Main user roles:
+
+* SELLER
+* CLIENT
+
+Permissions are managed dynamically through database relationships.
+
+Example:
+
+```
+users
+roles
+permissions
+user_roles
+role_permissions
+```
 
 ---
+
+# 💳 Payment Flow
+
+The project includes payment integration with Mercado Pago.
+
+The system uses asynchronous payment confirmation through webhooks.
+
+## Flow
+
+```
+Order Created
+      |
+      v
+Pending Status
+      |
+      v
+Payment Checkout
+      |
+      v
+Mercado Pago Webhook
+      |
+      v
+Order Status Update
+```
+
+## Order Lifecycle
+
+```
+PENDING
+   |
+CONFIRMED
+   |
+PROCESSING
+   |
+SHIPPED
+   |
+DELIVERED
+```
+
+Alternative flow:
+
+```
+CANCELED
+```
+
+---
+
+# 🗄️ Database
+
+The project uses PostgreSQL.
+
+Main entities:
+
+| Table       | Purpose                                |
+| ----------- | -------------------------------------- |
+| users       | User authentication and identification |
+| roles       | Access control roles                   |
+| permissions | Dynamic system permissions             |
+| products    | Product management                     |
+| stock       | Inventory control                      |
+| orders      | Customer orders                        |
+
+---
+
+# 🚀 Current Features
+
+## Backend
+
+* REST API
+* JWT Authentication
+* Refresh Token
+* Dynamic permissions
+* Product management
+* Order management
+* Mercado Pago integration
+* PostgreSQL database
+
+## Frontend
+
+* Responsive e-commerce interface
+* Component architecture
+* Reusable UI components
+* Category display
+* Promotional sections
+* Layout structure
+
+---
+
+# 🤝 Contribution
+
+This project is under continuous development.
+
+To contribute:
+
+1. Fork the repository
+
+2. Create a feature branch
+
+```bash
+git checkout -b feature/NewFeature
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add: feature description"
+```
+
+4. Push your branch
+
+```bash
+git push origin feature/NewFeature
+```
+
+5. Open a Pull Request
